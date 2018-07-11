@@ -1,5 +1,7 @@
 # Wörter
 
+[Return to Main](README.md)
+
 > | Abbreviation | Origin | Meaning |
 > | --- | --- | --- |
 > | m. | Maskulinum | 남성 |

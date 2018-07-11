@@ -1,5 +1,7 @@
 # Word Organizer
 
+[Return to Main](../README.md)
+
 Sort [words](../worter.md) in alphabetically or with categories, with Rust.
 
 ## Usage
