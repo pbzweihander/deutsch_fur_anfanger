@@ -23,32 +23,32 @@
 
 | Word | Category | Meaning | Description |
 | :--- | :---: | :--- | :--- |
-| kommen | i. | (aus et.3) 오다 |  |
+| (ein)mal | adv. | (요구, 권유. 독촉) 한번 |  |
+| arbeiten | i. | 일하다 |  |
+| Auf Wiedersehen! | R. | 또 봐요! |  |
 | aus | prp.3 | ~로 부터 |  |
-| _r_ Student | m. | 대학생 | pl. _e_ Studenten |
-| _r_ Lehrer | m. | 선생, 교사 | pl. _e_ Lehrer |
+| beruflich | adv. | 부사 |  |
+| dort | adv. | 거기에서 |  |
+| eigentlich | adv. | 원래 |  |
+| _e_ Frau | f. | ~씨, ~부인 (여성), Ms. |  |
+| haben | t. | 얻다, 갖다, have | du hast, er hat |
 | heißen | i. | ~라고 불리다, 이름이 ~이다 |  |
 | _r_ Herr | m. | ~씨 (남성), Mr. |  |
-| _e_ Frau | f. | ~씨, ~부인 (여성), Ms. |  |
-| eigentlich | adv. | 원래 |  |
-| wohnen | i. | (in et.3) 거주하다 |  |
-| jetzt | adv. | 지금 |  |
-| in | prp.3/4 | et.3 안에, et.4 안으로 |  |
-| dort | adv. | 거기에서 |  |
-| studiern | i. | 공부하다, study |  |
-| machen | i. | 하다 |  |
-| machen | t. | 만들다, make |  |
-| beruflich | adv. | 부사 |  |
-| (ein)mal | adv. | (요구, 권유. 독촉) 한번 |  |
-| nach | prp.3 | ~를 향하여 |  |
-| immer | adv. | 항상, 늘 |  |
 | herzlich | adv. | 진심으로 |  |
-| willkommen | a. | 환영받는, welcome |  |
+| immer | adv. | 항상, 늘 |  |
+| in | prp.3/4 | et.3 안에, et.4 안으로 |  |
+| jetzt | adv. | 지금 |  |
+| kommen | i. | (aus et.3) 오다 |  |
+| _r_ Lehrer | m. | 선생, 교사 | pl. _e_ Lehrer |
+| machen | t. | 만들다, make |  |
+| machen | i. | 하다 |  |
+| nach | prp.3 | ~를 향하여 |  |
+| _r_ Student | m. | 대학생 | pl. _e_ Studenten |
+| studiern | i. | 공부하다, study |  |
 | Vielen Dank. | R. | 대단히 감사합니다. |  |
 | _s_ Wiedersehen | n. | 재회 |  |
-| Auf Wiedersehen! | R. | 또 봐요! |  |
-| wohin | adv. | (의문부사) 어디로 |  |
+| willkommen | a. | 환영받는, welcome |  |
 | woher | adv. | (의문부사) 어디서 |  |
-| haben | t. | 얻다, 갖다, have | du hast, er hat |
-| arbeiten | i. | 일하다 |  |
+| wohin | adv. | (의문부사) 어디로 |  |
+| wohnen | i. | (in et.3) 거주하다 |  |
 |  |  |  |  |
