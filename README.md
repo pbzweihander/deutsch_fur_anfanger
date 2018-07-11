@@ -6,4 +6,5 @@ Notes for 2018-S Deutsch für Anfänger (002) Course.
 
 - [Phonics](aussprache.md)
 - [Words](wörter.md)
+  - [Word Organizer](organizer/README.md)
 - [Grammers](grammatik.md)
