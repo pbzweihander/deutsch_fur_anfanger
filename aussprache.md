@@ -71,3 +71,21 @@
 - /aʊ̯/: 중설 개모음 -> 후설 폐모음
 
 ![Diphthongs of standard German, from Mangold (2005:37)](https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/German_diphthongs_chart.svg/330px-German_diphthongs_chart.svg.png)
+
+### 모음의 장단
+
+- 장모음
+  - 중모음
+  - 모음 + 단자음 (+ 모음)
+  - 모음 + h (이때 h는 묵음이 된다)
+  - 모음 + -nd, -rt, -rd, ... 등 복자음이지만 장모음이 되는 예외가 있음
+- 단모음
+  - 모음 + 중자음 (+ 모음)
+  - 모음 + 복자음 (+ 모음)
+  - 모음 + x (x의 음가가 [ks]이기 때문에 복자음으로 취급)
+
+### 모음의 강세
+
+- 순수한 독일어는 _대체로_ 첫 음절에 강세가 있다.
+- 비분리전철에는 강세가 오지 않는다.
+- 약간의 인명과 지명은 불규칙적.
