@@ -1,12 +1,13 @@
 #[macro_use]
 extern crate lazy_static;
 extern crate getopts;
+extern crate rand;
 extern crate regex;
 
 use getopts::Options;
+use rand::{thread_rng, Rng};
 use regex::Regex;
 use std::cmp::Ordering;
-use std::collections::BinaryHeap;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Cursor, Read, Write};
 use std::str::FromStr;
@@ -48,22 +49,15 @@ impl FromStr for WordCategory {
 }
 
 struct Word {
-    sort_type: SortType,
     word: String,
     category: WordCategory,
     line: String,
 }
 
-impl PartialEq for Word {
-    fn eq(&self, other: &Self) -> bool {
-        self.word.eq(&other.word) && self.category.eq(&other.category)
-    }
-}
+impl FromStr for Word {
+    type Err = ();
 
-impl Eq for Word {}
-
-impl Word {
-    fn new(s: &str, sort_type: SortType) -> Result<Self, ()> {
+    fn from_str(s: &str) -> Result<Self, ()> {
         REGEX_LINE
             .captures(s)
             .map(|c| {
@@ -81,34 +75,11 @@ impl Word {
                 }
             })
             .map(|(word, category, line)| Word {
-                sort_type,
                 word,
                 category,
                 line,
             })
             .ok_or(())
-    }
-}
-
-impl PartialOrd for Word {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(match (self.sort_type, self.category.cmp(&other.category)) {
-            (SortType::Alphabet, _) | (SortType::Category, Ordering::Equal) => {
-                self.word.to_lowercase().cmp(&other.word.to_lowercase())
-            }
-            (_, ne) => ne,
-        })
-    }
-}
-
-impl Ord for Word {
-    fn cmp(&self, other: &Self) -> Ordering {
-        match (self.sort_type, self.category.cmp(&other.category)) {
-            (SortType::Alphabet, _) | (SortType::Category, Ordering::Equal) => {
-                self.word.to_lowercase().cmp(&other.word.to_lowercase())
-            }
-            (_, ne) => ne,
-        }
     }
 }
 
@@ -125,6 +96,7 @@ fn main() {
     opts.optflag("h", "help", "print this help message")
         .optflag("a", "alphabet", "sort alphabetically (default)")
         .optflag("c", "category", "sort with category")
+        .optflag("r", "random", "shuffle randomly")
         .optopt("o", "output", "output file (default: stdout)", "FILE");
 
     let matches = match opts.parse(&args[1..]) {
@@ -183,11 +155,11 @@ fn main() {
     line.clear();
     bufreader.read_line(&mut line).unwrap();
 
-    let mut heap = BinaryHeap::<Word>::new();
+    let mut list = Vec::new();
 
     while !line.is_empty() && REGEX_LINE.is_match(line.trim()) {
-        if let Ok(word) = Word::new(line.trim(), sort_type) {
-            heap.push(word);
+        if let Ok(word) = Word::from_str(line.trim()) {
+            list.push(word);
         } else {
             write!(output, "{}", line).unwrap();
         }
@@ -195,9 +167,19 @@ fn main() {
         bufreader.read_line(&mut line).unwrap();
     }
 
-    let words = heap.into_sorted_vec();
+    if matches.opt_present("r") {
+        let mut rng = thread_rng();
+        rng.shuffle(&mut list);
+    } else {
+        list.sort_by(|a, b| match (sort_type, a.category.cmp(&b.category)) {
+            (SortType::Alphabet, _) | (SortType::Category, Ordering::Equal) => {
+                a.word.to_lowercase().cmp(&b.word.to_lowercase())
+            }
+            (_, ne) => ne,
+        });
+    }
 
-    for word in words.into_iter() {
+    for word in list.into_iter() {
         write!(output, "{}\n", word.line).unwrap();
     }
 
