@@ -8,3 +8,4 @@ Notes for 2018-S Deutsch für Anfänger (002) Course.
 - [Words](worter.md)
   - [Word Organizer](organizer)
 - [Grammers](grammatik.md)
+- [Notes](notizen.md)
