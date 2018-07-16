@@ -10,17 +10,12 @@ use regex::Regex;
 use std::cmp::Ordering;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Cursor, Read, Write};
+use std::path::PathBuf;
 use std::str::FromStr;
 
 lazy_static! {
     static ref REGEX_LINE: Regex =
         Regex::from_str("^\\| (_[res]_)? ?(.+) \\| (.+) \\| (.+) \\| (.*) \\|$").unwrap();
-}
-
-#[derive(Clone, Copy)]
-enum SortType {
-    Alphabet,
-    Category,
 }
 
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
@@ -38,7 +33,7 @@ impl FromStr for WordCategory {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
-            "m." | "f." | "n." => Ok(WordCategory::Noun),
+            "m." | "f." | "n." | "pl." => Ok(WordCategory::Noun),
             "v." | "i." | "t." => Ok(WordCategory::Verb),
             "a." | "adj." => Ok(WordCategory::Adjective),
             "adv." => Ok(WordCategory::Adverb),
@@ -85,8 +80,66 @@ impl FromStr for Word {
     }
 }
 
+enum InputFile {
+    Path(PathBuf),
+    StdIn,
+}
+
+impl InputFile {
+    fn unwrap(self) -> PathBuf {
+        match self {
+            InputFile::Path(p) => p,
+            InputFile::StdIn => panic!(),
+        }
+    }
+}
+
+enum SortType {
+    Alphabet,
+    Category,
+    Random,
+}
+
+struct Config {
+    input_file: InputFile,
+    sort_type: SortType,
+    replace: bool,
+}
+
+impl Config {
+    fn from(opt_matches: &getopts::Matches) -> Result<Self, ()> {
+        let (input_file, is_input_stdin) = if !opt_matches.free.is_empty() {
+            if opt_matches.free[0] == "-" {
+                (InputFile::StdIn, true)
+            } else {
+                (InputFile::Path(PathBuf::from(&opt_matches.free[0])), false)
+            }
+        } else {
+            return Err(());
+        };
+
+        Ok(Config {
+            input_file: input_file,
+            sort_type: match (
+                opt_matches.opt_present("alphabet"),
+                opt_matches.opt_present("category"),
+                opt_matches.opt_present("shuffle"),
+            ) {
+                (_, false, false) => SortType::Alphabet,
+                (false, true, false) => SortType::Category,
+                (false, false, true) => SortType::Random,
+                _ => return Err(()),
+            },
+            replace: match (opt_matches.opt_present("replace"), is_input_stdin) {
+                (b, false) => b,
+                _ => return Err(()),
+            },
+        })
+    }
+}
+
 fn print_help(program: &str, opts: &Options) {
-    let brief = format!("Usage: {} FILE [options]", program);
+    let brief = format!("Usage: {} FILE [options]\n\n   FILE        The words markdown file to parse for table of contents,\n               or \"-\" to read from stdin", program);
     eprint!("{}", opts.usage(&brief));
 }
 
@@ -98,44 +151,27 @@ fn main() {
     opts.optflag("h", "help", "print this help message")
         .optflag("a", "alphabet", "sort alphabetically (default)")
         .optflag("c", "category", "sort with category")
-        .optflag("r", "random", "shuffle randomly")
-        .optopt("o", "output", "output file (default: stdout)", "FILE");
+        .optflag("s", "shuffle", "shuffle randomly")
+        .optflag("r", "replace", "replace the original file");
 
-    let matches = match opts.parse(&args[1..]) {
-        Ok(m) => m,
-        Err(e) => panic!(e.to_string()),
+    let config = match Config::from(&opts.parse(&args[1..]).unwrap()) {
+        Ok(c) => c,
+        Err(_) => {
+            print_help(&program, &opts);
+            return;
+        }
     };
 
-    if matches.opt_present("h") {
-        print_help(&program, &opts);
-        return;
-    }
-
-    let input_file = if !matches.free.is_empty() {
-        matches.free[0].clone()
-    } else {
-        print_help(&program, &opts);
-        return;
-    };
-
-    let sort_type = if matches.opt_present("a") && matches.opt_present("c") {
-        print_help(&program, &opts);
-        return;
-    } else if matches.opt_present("c") {
-        SortType::Category
-    } else {
-        SortType::Alphabet
-    };
-
-    let mut file = File::open(input_file).unwrap();
     let mut content = String::new();
-    file.read_to_string(&mut content).unwrap();
-    drop(file);
+    match config.input_file {
+        InputFile::StdIn => std::io::stdin().read_to_string(&mut content),
+        InputFile::Path(ref p) => File::open(p).unwrap().read_to_string(&mut content),
+    }.unwrap();
 
     let stdout = std::io::stdout();
 
-    let mut output: Box<Write> = if let Ok(Some(output_file)) = matches.opt_get::<String>("o") {
-        Box::new(File::create(output_file).unwrap())
+    let mut output: Box<Write> = if config.replace {
+        Box::new(File::create(&config.input_file.unwrap()).unwrap())
     } else {
         Box::new(stdout.lock())
     };
@@ -169,16 +205,17 @@ fn main() {
         bufreader.read_line(&mut line).unwrap();
     }
 
-    if matches.opt_present("r") {
-        let mut rng = thread_rng();
-        rng.shuffle(&mut list);
-    } else {
-        list.sort_by(|a, b| match (sort_type, a.category.cmp(&b.category)) {
+    match config.sort_type {
+        SortType::Random => {
+            let mut rng = thread_rng();
+            rng.shuffle(&mut list);
+        }
+        ref t => list.sort_by(|a, b| match (t, a.category.cmp(&b.category)) {
             (SortType::Alphabet, _) | (SortType::Category, Ordering::Equal) => {
                 a.word.to_lowercase().cmp(&b.word.to_lowercase())
             }
             (_, ne) => ne,
-        });
+        }),
     }
 
     for word in list.into_iter() {
