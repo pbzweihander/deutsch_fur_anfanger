@@ -21,6 +21,7 @@ lazy_static! {
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
 enum WordCategory {
     Noun,
+    Pronoun,
     Verb,
     AuxiliaryVerb,
     Adjective,
@@ -35,6 +36,7 @@ impl FromStr for WordCategory {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
             "m." | "f." | "n." | "pl." => Ok(WordCategory::Noun),
+            "prn." => Ok(WordCategory::Pronoun),
             "v." | "i." | "t." => Ok(WordCategory::Verb),
             "a." | "adj." => Ok(WordCategory::Adjective),
             "h." => Ok(WordCategory::AuxiliaryVerb),
