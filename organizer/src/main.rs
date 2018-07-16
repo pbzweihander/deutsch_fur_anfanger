@@ -22,6 +22,7 @@ lazy_static! {
 enum WordCategory {
     Noun,
     Verb,
+    AuxiliaryVerb,
     Adjective,
     Adverb,
     Preposition,
@@ -36,6 +37,7 @@ impl FromStr for WordCategory {
             "m." | "f." | "n." | "pl." => Ok(WordCategory::Noun),
             "v." | "i." | "t." => Ok(WordCategory::Verb),
             "a." | "adj." => Ok(WordCategory::Adjective),
+            "h." => Ok(WordCategory::AuxiliaryVerb),
             "adv." => Ok(WordCategory::Adverb),
             "prp.2" | "prp.3" | "prp.4" | "prp.3/4" => Ok(WordCategory::Preposition),
             "int." => Ok(WordCategory::Interjection),
