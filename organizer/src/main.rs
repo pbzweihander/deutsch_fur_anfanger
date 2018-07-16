@@ -30,6 +30,7 @@ enum WordCategory {
     Adjective,
     Adverb,
     Preposition,
+    Interjection,
     Phrase,
 }
 
@@ -42,6 +43,7 @@ impl FromStr for WordCategory {
             "a." | "adj." => Ok(WordCategory::Adjective),
             "adv." => Ok(WordCategory::Adverb),
             "prp.2" | "prp.3" | "prp.4" | "prp.3/4" => Ok(WordCategory::Preposition),
+            "int." => Ok(WordCategory::Interjection),
             "R." => Ok(WordCategory::Phrase),
             _ => Err(()),
         }
