@@ -17,8 +17,10 @@
 > | acc. | Akkusativ | 4격 |
 > | prn. | Pronomen | 대명사 |
 > | prp.n | Präposition | n격 지배 전치사 |
+> | cj. | Konjunktion | 접속사 |
 > | i. | Intransitiv | 자동사 |
 > | t. | Transitiv | 타동사 |
+> | refl. | Reflexiv | 재귀동사 |
 > | h. | Hilfverb | 조동사 |
 > | a. | Adjektiv | 형용사 |
 > | adv. | Adverb | 부사 |
@@ -70,6 +72,7 @@
 | _r_ Haus | m. | 집 | pl. Häuser |
 | _e_ Hausarbeit | f. | 가사 |  |
 | _e_ Hausfrau | f. | 가정주부 |  |
+| _e_ Heimat | f. | 고향 |  |
 | _r_ Herbst | m. | 가을 | Jahreszeiten |
 | _r_ Herr | m. | ~씨 (남성), Mr. |  |
 | _e_ Idee | f. | 생각, 아이디어, idea | pl. -n |
@@ -80,6 +83,7 @@
 | _r_ Juni | m. | 6월 | Monate |
 | _s_ Klavier | n. | 피아노 |  |
 | _e_ Kleidung | f. | 옷, clothing |  |
+| _e_ Kultur | f. | 문화, 농업, culture |  |
 | _e_ Küche | f. | 부엌 | pl. -n |
 | _e_ Lampe | f. | 등, 램프 | pl. -n |
 | _s_ Land | m. | 나라, 국가, 시골, 땅 | pl. Länder, <-> Stadt |
@@ -146,9 +150,11 @@
 | man | prn. | one, they, (일반주어) 사람들 | 문법적으로 3인칭 |
 | nichts | prn. | 아무것도 ~않다 |  |
 | niemand | prn. | 아무도 ~않다 | 부정관사류 |
+| wenn | cj. | ~할 때에, ~할 때마다, ~하는 동안은 |  |
 | abfahren | i. | 출발하다, depart | ab\|fahren, <-> ankommen |
 | amsteigen | i. | 갈아타다 | am\|steigen |
 | ankommen | i. | 도착하다, arrive | an\|kommen, <-> abfahren |
+| anpassen | refl. | 적응하다, 순응하다 | an\|passen |
 | arbeiten | i. | 일하다 |  |
 | auffallen | i. | 눈에 띄다 | auf\|fallen |
 | aufmachen | t. | 열다 | auf\|machen, <-> zumachen |
@@ -157,6 +163,7 @@
 | aussehen | i. | ~처럼 보이다 | aus\|sehen |
 | aussteigen | i. | 내리다 | aus\|steigen |
 | ausziehen | i. | 이사가다 | aus\|ziehen |
+| bedeuten | t. | 뜻하다, 의미하다 |  |
 | bekommen | t. | 얻다 |  |
 | beschreiben | t. | 묘사하다 |  |
 | besichtigen | t. | 구경하다 |  |
@@ -169,15 +176,19 @@
 | einziehen | i. | 이사오다 | ein\|ziehen |
 | empfehlen | t. | 추천하다 |  |
 | entdecken | t. | 발견하다 |  |
+| erkennen | t. | 알다, 깨닫다 |  |
 | erzählen | t. | 이야기하다 |  |
 | finden | t. | 발견하다 |  |
 | geben | t. | [jm. et.4] 주다 | du gibst, er gibt |
 | gefallen | t. | [jm.] ~의 마음에 들다 | es gefällt |
 | gehen | i. | 가다 |  |
+| gewöhnen | refl. | [an et.] 익숙해지다 |  |
+| glauben | t. | 믿다 |  |
 | haben | t. | 얻다, 갖다, have | du hast, er hat |
 | heißen | i. | ~라고 불리다, 이름이 ~이다 |  |
 | helfen | t. | [jm.] 돕다, help | du hilfst, er hilft |
 | hängen | i. | 걸려있다 |  |
+| kennen lernen | t. | 아는 사이가 되다, 알게 되다 |  |
 | kommen | i. | [aus et.3] 오다 |  |
 | leben | i. | 살다 |  |
 | lieben | t. | 사랑하다 |  |
@@ -207,6 +218,7 @@
 | treffen | t. | 만나다 | du triffst, er trifft |
 | trinken | i. | 마시다 |  |
 | umziehen | i. | 이사하다 | um\|ziehen |
+| verlassen | t. | 떠나다 |  |
 | vermissen | t. | 그리워하다 |  |
 | verreisen | i. | 여행을 떠나다 |  |
 | vorhaben | t. | 의도하다, 계획하다, 뜻하다 | vor\|haben |
@@ -224,7 +236,9 @@
 | sollen | h. | (당위) 해야한다, should <br> (소문) ~라고 하더라 | nicht sollen (금지) 해서는 안된다, should not |
 | wollen | h. | (의지) 하려고 한다, will |  |
 | alt | a. | 늙은, 나이가 든, old |  |
+| ander | a. | 다른 |  |
 | brav | a. | 착한, 얌전한 |  |
+| erst | a. | 처음의, 최초의 |  |
 | gesund | a. | 건강한 |  |
 | groß | a. | 큰 | <-> klein |
 | gut | a. | 좋은 |  |
@@ -244,6 +258,7 @@
 | abends | adv. | 저녁에 |  |
 | bald | adv. | 곧 |  |
 | beruflich | adv. | 부사 |  |
+| dann | adv. | 그 때, 그 경우에 |  |
 | dort | adv. | 거기에서 |  |
 | draußen | adv. | 바깥에 |  |
 | eigentlich | adv. | 원래 |  |
@@ -274,10 +289,12 @@
 | pünktlich | adv. | 정시에 |  |
 | regelmäßig | adv. | 규칙적으로 |  |
 | relativ | adv. | 비교적 |  |
+| schon | adv. | 벌써 |  |
 | sehr | adv. | 아주, 매우 |  |
 | sogar | adv. | 심지어 |  |
 | später | adv. | 나중에 |  |
 | ungefähr | adv. | 대략 |  |
+| vielleicht | adv. | 아마도, 어쩌면 |  |
 | vorbei | adv. | (시간이) 지나간, 끝난 |  |
 | wirklich | adv. | 정말로 |  |
 | woher | adv. | 어디서 | 의문부사 |
